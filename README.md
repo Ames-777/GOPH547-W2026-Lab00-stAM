@@ -1,4 +1,3 @@
-# GOPH547-W2026-Lab00-stAM
 #GOPH 547
 
 *Semester:* W2026
