@@ -1,2 +1,8 @@
 # GOPH547-W2026-Lab00-stAM
-Purpose of this lab is to get acquainted with Python, matplotlib, and numpy, GitHub, and using virtual environments.
+#GOPH 547
+
+*Semester:* W2026
+*Instructor:* B. Karchewski
+*Author:* Amelia Morris
+
+An example repository setup for a simple Python package. Includes examples using Numpy arrays and Matplotlib for visualization.
