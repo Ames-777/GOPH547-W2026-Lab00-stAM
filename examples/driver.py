@@ -60,9 +60,6 @@ def main():
 
     #10. Load image rock_canyon.jpg.
     img_array = np.asarray(Image.open('rock_canyon.jpg'))
-    #print(f'10. Type:\n{type(img_array)}')
-    #print(f'Shape:\n{img_array.shape}')
-    #print(f'Data Type:\{img_array.dtype}')
 
     #11. Plot image using imshow() function.
     img_plot = plt.imshow(img_array)
