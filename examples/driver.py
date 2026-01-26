@@ -2,6 +2,16 @@ import numpy as np
 from PIL import Image
 import matplotlib.pyplot as plt
 
+import sys
+from pathlib import Path
+
+print("Python:", sys.executable)
+print("CWD:", Path().resolve())
+print("sys.path:")
+for p in sys.path:
+    print(" ", p)
+
+
 from GOPH547Lab00.arrays import (
     square_ones,
     )
@@ -81,12 +91,57 @@ def main():
     plt.show()
 
     #14. For original image, make subplot with two plots.
+    #15. Include axis labels, title, legend on each subplot.
+    #Colour channels:
+    R = img_array[:, :, 0]
+    G = img_array[:, :, 1]
+    B = img_array[:, :, 2]
 
+    #Mean colours along y-direction vs x-coordinate.
+    Mean_R_x = np.mean(R, axis=0)
+    Mean_G_x = np.mean(G, axis=0)
+    Mean_B_x = np.mean(B, axis=0)
+    Mean_RGB_x = np.mean(img_array, axis=(0, 2))
 
-    #15. Include acis labels, title, legend on each subplot.
+    #Mean colours along x-direction vs y-coordinate.
+    Mean_R_y = np.mean(R, axis=1)
+    Mean_G_y = np.mean(G, axis=1)
+    Mean_B_y = np.mean(B, axis=1)
+    Mean_RGB_y = np.mean(img_array, axis=(1, 2))
 
+    #Creating subplots.
+    fig, axes = plt.subplots(1, 2, figsize=(14, 5))
+
+    #Plotting mean colours along y-direction vs x-coordinate.
+    axes[0].plot(Mean_R_x, color="red", label="Mean Red (R)")
+    axes[0].plot(Mean_G_x, color="green", label="Mean Green (G)")
+    axes[0].plot(Mean_B_x, color="blue", label="Mean Blue (B)")
+    axes[0].plot(Mean_RGB_x, color="black", linewidth=2, label="Mean RGB")
+    axes[0].set_xlabel('X-Coordinate')
+    axes[0].set_ylabel('Colour Value')
+    axes[0].set_title('Mean Colour Values VS X-Coordinate')
+    axes[0].legend()
+
+    #Plotting mean colours along x-direction vs y-coordinate.
+    axes[1].plot(Mean_R_y, np.arange(len(Mean_R_y)), color="red", label="Mean Red")
+    axes[1].plot(Mean_G_y, np.arange(len(Mean_G_y)), color="green", label="Mean Green")
+    axes[1].plot(Mean_B_y, np.arange(len(Mean_B_y)), color="blue", label="Mean Blue")
+    axes[1].plot(Mean_RGB_y, np.arange(len(Mean_RGB_y)), color="black", linewidth=2, label="Mean RGB")
+    axes[1].set_xlabel('Colour Value')
+    axes[1].set_ylabel('Y-Coordinate')
+    axes[1].set_title('Mean Colour Values VS Y-Coordinate')
+    axes[1].legend()
 
     #16. Save subplot figure as a file using savefig() function.
+    plt.tight_layout()
+    plt.savefig('rock_canyon_RGB_summary.png')
+    print('16. Saved RGB summary image in examples folder.')
 
+    plt.tight_layout()
+    plt.show()
+    print('14. and 15. Successfully created subplots.')
+    print()
+
+    
 if __name__ == '__main__':
     main()
